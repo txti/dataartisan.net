@@ -1,0 +1,12 @@
+---
+import { getEntry, render } from 'astro:content'
+import Base from '../layouts/Base.astro'
+const entry = await getEntry('about', 'about')
+const { Content } = entry ? await render(entry) : { Content: null }
+---
+<Base title="About">
+  <div class="wrap">
+    <h1>About</h1>
+    <div class="prose">{Content && <Content />}</div>
+  </div>
+</Base>

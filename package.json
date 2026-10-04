@@ -1,54 +1,37 @@
 {
-  "name": "gatsby-starter-netlify-cms",
-  "description": "Example Gatsby, and Netlify CMS project",
-  "version": "1.1.3",
-  "author": "Austin Green",
-  "dependencies": {
-    "bulma": "^0.9.0",
-    "gatsby": "^4.0.0",
-    "gatsby-plugin-image": "^2.0.0",
-    "gatsby-plugin-netlify": "^5.0.0",
-    "gatsby-plugin-netlify-cms": "^6.0.0",
-    "gatsby-plugin-purgecss": "^6.0.0",
-    "gatsby-plugin-react-helmet": "^5.0.0",
-    "gatsby-plugin-sass": "^5.0.0",
-    "gatsby-plugin-sharp": "^4.0.0",
-    "gatsby-remark-copy-linked-files": "^5.0.0",
-    "gatsby-remark-images": "^6.0.0",
-    "gatsby-remark-relative-images": "^2.0.2",
-    "gatsby-source-filesystem": "^4.0.0",
-    "gatsby-transformer-remark": "^5.0.0",
-    "gatsby-transformer-sharp": "^4.0.0",
-    "lodash": "^4.17.15",
-    "lodash-webpack-plugin": "^0.11.4",
-    "netlify-cms-app": "^2.15.72",
-    "netlify-cms-media-library-cloudinary": "^1.3.10",
-    "netlify-cms-media-library-uploadcare": "^0.5.10",
-    "prop-types": "^15.6.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-helmet": "^6.0.0",
-    "sass": "^1.43.2",
-    "uuid": "^8.0.0"
-  },
-  "keywords": [
-    "gatsby"
-  ],
+  "name": "dataartisan.net",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
   "license": "MIT",
-  "main": "n/a",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "clean": "gatsby clean",
-    "start": "npm run develop",
-    "build": "npm run clean && gatsby build",
-    "develop": "npm run clean && gatsby develop",
-    "serve": "gatsby serve",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/netlify": "^8.2.6",
+    "@astrojs/react": "^7.0.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@keystatic/astro": "^6.0.0",
+    "@keystatic/core": "^0.6.9",
+    "astro": "^7.3.5",
+    "d3": "^7.9.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
-  },
-  "engines": {
-    "node": ">= 14.15.0"
+    "@astrojs/check": "^0.9.10",
+    "@types/d3": "^7.4.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
   }
 }
