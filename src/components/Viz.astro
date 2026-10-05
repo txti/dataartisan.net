@@ -1,0 +1,19 @@
+---
+// Wrapper for any chart in an MDX post: <Viz caption="…" source="…"> …svg / island… </Viz>
+interface Props { caption?: string; source?: string }
+const { caption, source } = Astro.props
+---
+<figure>
+  <slot />
+  {(caption || source) && (
+    <figcaption>
+      {caption}{source && <span class="src"> Source: {source}</span>}
+    </figcaption>
+  )}
+</figure>
+<style>
+  figure { margin: 2.5rem -3rem; }
+  figcaption { margin: 0.8rem 3rem 0; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  .src { display: block; opacity: 0.8; }
+  @media (max-width: 60rem) { figure { margin-inline: 0; } figcaption { margin-inline: 0; } }
+</style>

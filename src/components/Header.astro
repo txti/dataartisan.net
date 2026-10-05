@@ -1,0 +1,20 @@
+---
+const links = [
+  { href: '/blog', label: 'Writing' },
+  { href: '/about', label: 'About' },
+]
+const path = Astro.url.pathname
+---
+<header class="wide">
+  <a href="/" class="mark">Data Artisan</a>
+  <nav aria-label="Main">
+    {links.map((l) => <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>)}
+  </nav>
+</header>
+<style>
+  header { display: flex; justify-content: space-between; align-items: baseline; padding-block: 2rem; }
+  .mark { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+  nav { display: flex; gap: 1.6rem; }
+  nav a { text-decoration: none; }
+  nav a[aria-current='page'] { color: var(--accent); }
+</style>

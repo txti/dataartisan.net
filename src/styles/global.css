@@ -1,0 +1,48 @@
+@import '@fontsource-variable/newsreader';
+@import '@fontsource-variable/jetbrains-mono';
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0b;
+  --fg: #e8e6e1;
+  --muted: #8b8881;
+  --line: #2a2a2d;
+  --accent: #e0a458; /* sodium-vapour amber: the one warm light in the frame */
+  --serif: 'Newsreader Variable', Georgia, serif;
+  --mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --measure: 38rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 112.5%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 0.25em; transition: color .2s, text-decoration-color .2s; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+.wrap { width: min(100% - 3rem, var(--measure)); margin-inline: auto; }
+.wide { width: min(100% - 3rem, 64rem); margin-inline: auto; }
+
+.mono, .eyebrow, time, nav { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+h1, h2, h3 { font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+
+.prose { font-size: 1.05rem; }
+.prose p { margin: 1.3em 0; }
+.prose h2 { margin: 2.6em 0 0.6em; font-size: 1.5rem; }
+.prose blockquote { margin: 2em 0; padding-left: 1.2em; font-style: italic; color: var(--muted); }
+.prose img, .prose svg { max-width: 100%; height: auto; }
+.prose code { font-family: var(--mono); font-size: 0.85em; }
+.prose pre { overflow-x: auto; padding: 1em; background: rgba(255,255,255,0.03); }
+
+.draw path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 3.2s ease-out forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .draw path { animation: none; stroke-dashoffset: 0; } }
