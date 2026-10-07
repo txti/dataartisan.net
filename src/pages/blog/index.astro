@@ -1,7 +1,7 @@
 ---
-import { getCollection } from 'astro:content'
+import { getPosts, topicLabel } from '../../lib/posts'
 import Base from '../../layouts/Base.astro'
-const posts = (await getCollection('posts', (p) => !p.data.draft)).sort((a, b) => +b.data.date - +a.data.date)
+const posts = (await getPosts())
 const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' })
 ---
 <Base title="Writing">
@@ -10,7 +10,7 @@ const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day
     <ul>
       {posts.map((p) => (
         <li>
-          <time datetime={p.data.date.toISOString()}>{fmt.format(p.data.date)} · {p.data.topic.replace('-', ' ')}</time>
+          <time datetime={p.data.date.toISOString()}>{fmt.format(p.data.date)} · {topicLabel(p.data.topic)}</time>
           <a href={`/blog/${p.id}`}>{p.data.title}</a>
           <p>{p.data.description}</p>
         </li>

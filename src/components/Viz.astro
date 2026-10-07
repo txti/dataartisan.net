@@ -1,19 +1,21 @@
 ---
-// Wrapper for any chart in an MDX post: <Viz caption="…" source="…"> …svg / island… </Viz>
+// Frame for any chart or image in an MDX post: <Viz caption="…" source="…"> … </Viz>
 interface Props { caption?: string; source?: string }
 const { caption, source } = Astro.props
 ---
 <figure>
-  <slot />
+  <div class="plate"><slot /></div>
   {(caption || source) && (
     <figcaption>
-      {caption}{source && <span class="src"> Source: {source}</span>}
+      {caption}{source && <span class="src">Source: {source}</span>}
     </figcaption>
   )}
 </figure>
 <style>
   figure { margin: 2.5rem -3rem; }
+  .plate { background: rgba(255, 255, 255, 0.03); padding: 1.5rem 3rem; min-height: 12rem; display: grid; align-content: center; color: var(--muted); }
+  .plate :global(p) { margin: 0; }
   figcaption { margin: 0.8rem 3rem 0; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
   .src { display: block; opacity: 0.8; }
-  @media (max-width: 60rem) { figure { margin-inline: 0; } figcaption { margin-inline: 0; } }
+  @media (max-width: 60rem) { figure { margin-inline: 0; } .plate { padding-inline: 1.5rem; } figcaption { margin-inline: 0; } }
 </style>

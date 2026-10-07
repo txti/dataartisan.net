@@ -2,11 +2,26 @@
 import { getEntry, render } from 'astro:content'
 import Base from '../layouts/Base.astro'
 const entry = await getEntry('about', 'about')
-const { Content } = entry ? await render(entry) : { Content: null }
+if (!entry) throw new Error('Missing src/content/about.mdx')
+const { data } = entry
+const { Content } = await render(entry)
 ---
-<Base title="About">
+<Base title="About" description={data.tagline}>
   <div class="wrap">
-    <h1>About</h1>
-    <div class="prose">{Content && <Content />}</div>
+    <header>
+      {data.portrait && <img src={data.portrait} alt={data.name} width="160" height="160" />}
+      <h1>{data.name}</h1>
+      <p class="tagline">{data.tagline}</p>
+    </header>
+    <div class="prose"><Content /></div>
+    {data.links.length > 0 && (
+      <ul class="links">{data.links.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
+    )}
   </div>
 </Base>
+<style>
+  header { padding-block: 2rem 1rem; }
+  img { display: block; width: 8rem; height: 8rem; object-fit: cover; border-radius: 50%; margin-bottom: 1.5rem; }
+  .tagline { color: var(--muted); font-size: 1.2rem; margin: 0; }
+  .links { list-style: none; padding: 0; margin: 3rem 0 0; display: flex; gap: 1.6rem; flex-wrap: wrap; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
