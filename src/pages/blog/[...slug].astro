@@ -1,20 +1,39 @@
 ---
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Viz from '../../components/Viz.astro'
+import { getPosts, topicLabel } from '../../lib/posts'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', (p) => !p.data.draft)
+  const posts = await getPosts()
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }))
 }
 const { post } = Astro.props
+const { data } = post
 const { Content } = await render(post)
 const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long', day: 'numeric' })
 ---
-<Base title={post.data.title} description={post.data.description}>
-  <article class="wrap">
-    <p class="eyebrow">{post.data.topic.replace('-', ' ')} · <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time></p>
-    <h1>{post.data.title}</h1>
-    <div class="prose"><Content components={{ Viz }} /></div>
+<Base title={data.title} description={data.description}>
+  <article>
+    <header class="wrap">
+      <p class="eyebrow">{topicLabel(data.topic)} · <time datetime={data.date.toISOString()}>{fmt.format(data.date)}</time>{data.draft && ' · draft'}</p>
+      <h1>{data.title}</h1>
+      <p class="dek">{data.description}</p>
+    </header>
+    {data.cover && <img class="cover wide" src={data.cover} alt={data.coverAlt ?? ''} />}
+    <div class="wrap prose"><Content components={{ Viz }} /></div>
+    {data.sources.length > 0 && (
+      <aside class="wrap sources" aria-label="Sources and data">
+        <h2 class="eyebrow">Sources &amp; data</h2>
+        <ul>{data.sources.map((s) => <li><a href={s.url}>{s.label}</a></li>)}</ul>
+      </aside>
+    )}
   </article>
 </Base>
+<style>
+  header { padding-block: 2rem 1rem; }
+  .dek { color: var(--muted); font-size: 1.2rem; margin: 0 0 1.5rem; }
+  .cover { display: block; height: auto; margin-block: 1rem 2rem; }
+  .sources { margin-top: 4rem; }
+  .sources ul { list-style: none; padding: 0; margin: 0.8rem 0 0; display: grid; gap: 0.4rem; }
+</style>

@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content'
+import { getPosts } from '../lib/posts'
 import Base from '../layouts/Base.astro'
-import Horizon from '../components/Horizon.astro'
-const posts = (await getCollection('posts', (p) => !p.data.draft)).sort((a, b) => +b.data.date - +a.data.date).slice(0, 5)
+import Robot from '../components/Robot.astro'
+const posts = (await getPosts()).slice(0, 5)
 const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' })
 ---
 <Base>
   <section class="wide hero">
     <p class="eyebrow">Data · Machines · Memory</p>
-    <h1>Do we dream of what we measure?</h1>
-    <p class="lede">Data stories about artificial intelligence, a changing planet, and what we call progress, told through the people inside the numbers.</p>
-    <Horizon />
+    <h1>Stories told with data.</h1>
+    <p class="lede">On artificial intelligence, a changing planet, and what we call progress, told through the people inside the numbers.</p>
+    <Robot />
   </section>
   <section class="wrap">
     <h2 class="eyebrow">Recent writing</h2>
@@ -27,7 +27,7 @@ const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day
 </Base>
 <style>
   .hero { padding-block: 4rem 3rem; }
-  .hero h1 { max-width: 14ch; margin: 0.4em 0; font-size: clamp(2.4rem, 7vw, 4.5rem); }
+  .hero h1 { max-width: 12ch; margin: 0.4em 0; font-size: clamp(2.4rem, 7vw, 4.5rem); }
   .lede { max-width: 34rem; color: var(--muted); font-size: 1.15rem; margin-bottom: 4rem; }
   ul { list-style: none; padding: 0; margin: 1.5rem 0 0; }
   li { padding-block: 1.6rem; display: grid; gap: 0.3rem; }
