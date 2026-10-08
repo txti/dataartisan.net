@@ -27,7 +27,8 @@ a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 0
 a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 :focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 
-.wrap { width: min(100% - 3rem, var(--measure)); margin-inline: auto; }
+/* Text column: left edge matches .wide (and so the header logo); width stays at the reading measure. */
+.wrap { width: min(100% - 3rem, var(--measure)); margin-left: max(1.5rem, calc((100% - 64rem) / 2)); margin-right: auto; }
 .wide { width: min(100% - 3rem, 64rem); margin-inline: auto; }
 
 .mono, .eyebrow, time, nav { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
