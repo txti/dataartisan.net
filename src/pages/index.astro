@@ -29,12 +29,12 @@ const fmt = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day
   </section>
 </Base>
 <style>
-  .hero { padding-block: 4rem 3rem; }
+  .hero { padding-bottom: 3rem; }
   /* .art spans the page grid so the caption lines up with the header logo; the drawing is 54/64 of it, flush right. */
   .art { position: relative; container-type: inline-size; }
   .pic { width: 84.375%; margin-left: auto; }
-  /* Anchored by its bottom edge: sits just above the android's head and stops short of the books. */
-  .cap { position: absolute; bottom: 24.4cqi; left: 0; width: 60%; z-index: 1; }
+  /* Top edge flush with the top of the second book (11.35% of the drawing's height down; the small offset trims the label's line-height). Stops short of the books. */
+  .cap { position: absolute; top: calc(4.54cqi - 0.25rem); left: 0; width: 60%; z-index: 1; }
   .cap .eyebrow { margin: 0 0 1.4em; }
   h1 { margin: 0; font-size: max(1rem, 2.11cqi); line-height: 1.3; }
   @media (max-width: 46rem) {
