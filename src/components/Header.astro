@@ -5,14 +5,14 @@ const links = [
 ]
 const path = Astro.url.pathname
 ---
-<header class="wide">
+<header class="wrap">
   <a href="/" class="mark">Data Artisan</a>
   <nav aria-label="Main">
     {links.map((l) => <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>)}
   </nav>
 </header>
 <style>
-  header { display: flex; justify-content: space-between; align-items: baseline; padding-block: 2rem; }
+  header { display: flex; justify-content: space-between; align-items: baseline; padding-block: 2rem 1rem; }
   .mark { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
   nav { display: flex; gap: 1.6rem; }
   nav a { text-decoration: none; }
